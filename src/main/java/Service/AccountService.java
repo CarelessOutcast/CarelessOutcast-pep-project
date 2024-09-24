@@ -76,7 +76,7 @@ public class AccountService {
         // - required not_blank username 
         // - required unique username 
         return !accountDAO.isUsername(username)
-            && (username.length() >= 0);
+            && (username.length() >= 1);
     }
 
     /**

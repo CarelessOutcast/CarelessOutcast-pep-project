@@ -36,10 +36,11 @@ public class AccountDAO {
     public Account getAccount(Account account) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            String sql = "SELECT * FROM Account WHERE account_id=?;";
+            String sql = "SELECT * FROM Account WHERE username=? AND password=?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1, account.getAccount_id());
+            preparedStatement.setString(1, account.getUsername());
+            preparedStatement.setString(2, account.getPassword());
 
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

@@ -94,8 +94,9 @@ public class MessageDAO {
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            return deletedMessage;
         }
-        return deletedMessage;
+        return null;
     }
 
     public Message updateMessage(Message message, int id) {
@@ -110,7 +111,9 @@ public class MessageDAO {
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                return getMessageById(id);
+                return message;
+            } else {
+                return null;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

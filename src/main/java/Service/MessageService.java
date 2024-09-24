@@ -64,7 +64,11 @@ public class MessageService {
      */
     public Message patchMessage(Message message, String pathParamId) {
         int id = Integer.parseInt(pathParamId);
-        return messageDAO.updateMessage(message,id);
+        if (valid(message)){
+            return messageDAO.updateMessage(message,id);
+        } else {
+            return null;
+        }
     }
 
     /**
